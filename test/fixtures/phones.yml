@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  phone: MyString
+  pin: 1
+  pin_sent_at: 2017-03-23 21:40:34
+  verified: false
+
+two:
+  phone: MyString
+  pin: 1
+  pin_sent_at: 2017-03-23 21:40:34
+  verified: false

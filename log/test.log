@@ -1,0 +1,604 @@
+  [1m[35m (298.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS `verification_app_test`[0m
+  [1m[35m (17.5ms)[0m  [1m[35mCREATE DATABASE `verification_app_test` DEFAULT CHARACTER SET `utf8`[0m
+  [1m[35m (563.8ms)[0m  [1m[35mCREATE TABLE `emails` (`id` int AUTO_INCREMENT PRIMARY KEY, `email` varchar(255), `confirmed` tinyint(1), `confirm_token` varchar(255), `employer_id` int, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_emails_on_employer_id` USING btree (`employer_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (294.9ms)[0m  [1m[35mCREATE TABLE `employers` (`id` int AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `gender` tinyint(1), `location` varchar(255), `dob` varchar(255), `password_digest` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (342.8ms)[0m  [1m[35mCREATE TABLE `phones` (`id` int AUTO_INCREMENT PRIMARY KEY, `phone` varchar(255), `pin` int DEFAULT 6523, `pin_sent_at` datetime, `verified` tinyint(1) DEFAULT 0, `employer_id` int, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_phones_on_employer_id` USING btree (`employer_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (310.3ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) PRIMARY KEY) ENGINE=InnoDB[0m
+  [1m[35m (37.7ms)[0m  [1m[34mSELECT version FROM `schema_migrations`[0m
+  [1m[35m (83.7ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES (20170323161034)[0m
+  [1m[35m (55.3ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES
+(20170323153204),
+(20170323160926);
+
+[0m
+  [1m[35m (311.6ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) PRIMARY KEY, `value` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'test', '2017-03-26 21:32:02', '2017-03-26 21:32:02')[0m
+  [1m[35m (44.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (10.0ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (22.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT DATABASE() as db[0m
+  [1m[35m (10.8ms)[0m  [1m[34mselect table_name from information_schema.views where table_schema = 'verification_app_test'[0m
+  [1m[35m (248.1ms)[0m  [1m[35mTRUNCATE TABLE `ar_internal_metadata`;[0m
+  [1m[35m (167.5ms)[0m  [1m[35mTRUNCATE TABLE `emails`;[0m
+  [1m[35m (167.7ms)[0m  [1m[35mTRUNCATE TABLE `employers`;[0m
+  [1m[35m (169.4ms)[0m  [1m[35mTRUNCATE TABLE `phones`;[0m
+  [1m[35m (14.2ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPhone Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` IS NULL LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (11.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT DATABASE() as db[0m
+  [1m[35m (0.5ms)[0m  [1m[34mselect table_name from information_schema.views where table_schema = 'verification_app_test'[0m
+  [1m[35m (192.7ms)[0m  [1m[35mTRUNCATE TABLE `ar_internal_metadata`;[0m
+  [1m[35m (167.8ms)[0m  [1m[35mTRUNCATE TABLE `emails`;[0m
+  [1m[35m (189.9ms)[0m  [1m[35mTRUNCATE TABLE `employers`;[0m
+  [1m[35m (202.9ms)[0m  [1m[35mTRUNCATE TABLE `phones`;[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPhone Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` = BINARY '1234567890' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `phones` (`phone`, `pin`, `created_at`, `updated_at`) VALUES ('1234567890', 1234, '2017-03-26 21:33:47', '2017-03-26 21:33:47')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (44.9ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT DATABASE() as db[0m
+  [1m[35m (0.3ms)[0m  [1m[34mselect table_name from information_schema.views where table_schema = 'verification_app_test'[0m
+  [1m[35m (199.2ms)[0m  [1m[35mTRUNCATE TABLE `ar_internal_metadata`;[0m
+  [1m[35m (190.0ms)[0m  [1m[35mTRUNCATE TABLE `emails`;[0m
+  [1m[35m (167.7ms)[0m  [1m[35mTRUNCATE TABLE `employers`;[0m
+  [1m[35m (169.4ms)[0m  [1m[35mTRUNCATE TABLE `phones`;[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPhone Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` = BINARY '1234567890' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `phones` (`phone`, `pin`, `created_at`, `updated_at`) VALUES ('1234567890', 1234, '2017-03-26 21:36:38', '2017-03-26 21:36:38')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mPhone Exists (8.5ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` = BINARY '1234567890' AND (`phones`.`id` != 1) LIMIT 1[0m
+  [1m[35m (41.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (9.9ms)[0m  [1m[34mSELECT DATABASE() as db[0m
+  [1m[35m (0.5ms)[0m  [1m[34mselect table_name from information_schema.views where table_schema = 'verification_app_test'[0m
+  [1m[35m (205.0ms)[0m  [1m[35mTRUNCATE TABLE `ar_internal_metadata`;[0m
+  [1m[35m (167.8ms)[0m  [1m[35mTRUNCATE TABLE `emails`;[0m
+  [1m[35m (167.6ms)[0m  [1m[35mTRUNCATE TABLE `employers`;[0m
+  [1m[35m (201.2ms)[0m  [1m[35mTRUNCATE TABLE `phones`;[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPhone Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` = BINARY '1234567890' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `phones` (`phone`, `pin`, `created_at`, `updated_at`) VALUES ('1234567890', 1234, '2017-03-26 21:39:45', '2017-03-26 21:39:45')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mPhone Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` = BINARY '1234567890' AND (`phones`.`id` != 1) LIMIT 1[0m
+  [1m[35m (33.9ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (11.9ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT DATABASE() as db[0m
+  [1m[35m (0.5ms)[0m  [1m[34mselect table_name from information_schema.views where table_schema = 'verification_app_test'[0m
+  [1m[35m (119.0ms)[0m  [1m[35mTRUNCATE TABLE `ar_internal_metadata`;[0m
+  [1m[35m (145.3ms)[0m  [1m[35mTRUNCATE TABLE `emails`;[0m
+  [1m[35m (156.4ms)[0m  [1m[35mTRUNCATE TABLE `employers`;[0m
+  [1m[35m (167.7ms)[0m  [1m[35mTRUNCATE TABLE `phones`;[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPhone Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` = BINARY '1234567890' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `phones` (`phone`, `pin`, `created_at`, `updated_at`) VALUES ('1234567890', 1234, '2017-03-26 21:40:00', '2017-03-26 21:40:00')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (27.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT DATABASE() as db[0m
+  [1m[35m (0.3ms)[0m  [1m[34mselect table_name from information_schema.views where table_schema = 'verification_app_test'[0m
+  [1m[35m (163.1ms)[0m  [1m[35mTRUNCATE TABLE `ar_internal_metadata`;[0m
+  [1m[35m (167.8ms)[0m  [1m[35mTRUNCATE TABLE `emails`;[0m
+  [1m[35m (167.7ms)[0m  [1m[35mTRUNCATE TABLE `employers`;[0m
+  [1m[35m (147.2ms)[0m  [1m[35mTRUNCATE TABLE `phones`;[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPhone Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` = BINARY '1234567890' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `phones` (`phone`, `pin`, `created_at`, `updated_at`) VALUES ('1234567890', 1234, '2017-03-26 21:40:50', '2017-03-26 21:40:50')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mEmail Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `emails` WHERE `emails`.`email` = BINARY 'example1@domain.com' LIMIT 1[0m
+  [1m[35mSQL (14.2ms)[0m  [1m[32mINSERT INTO `emails` (`email`, `confirmed`, `confirm_token`, `created_at`, `updated_at`) VALUES ('example1@domain.com', 0, 'KRK7cZzeiqYpNXE5V9mtFg', '2017-03-26 21:40:50', '2017-03-26 21:40:50')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mPhone Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` = BINARY '1234567890' AND (`phones`.`id` != 1) LIMIT 1[0m
+  [1m[36mEmail Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `emails` WHERE `emails`.`email` = BINARY 'example1@domain.com' AND (`emails`.`id` != 1) LIMIT 1[0m
+  [1m[35m (49.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT DATABASE() as db[0m
+  [1m[35m (0.3ms)[0m  [1m[34mselect table_name from information_schema.views where table_schema = 'verification_app_test'[0m
+  [1m[35m (172.6ms)[0m  [1m[35mTRUNCATE TABLE `ar_internal_metadata`;[0m
+  [1m[35m (167.7ms)[0m  [1m[35mTRUNCATE TABLE `emails`;[0m
+  [1m[35m (167.8ms)[0m  [1m[35mTRUNCATE TABLE `employers`;[0m
+  [1m[35m (191.6ms)[0m  [1m[35mTRUNCATE TABLE `phones`;[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPhone Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` = BINARY '1234567890' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `phones` (`phone`, `pin`, `created_at`, `updated_at`) VALUES ('1234567890', 1234, '2017-03-26 21:43:25', '2017-03-26 21:43:25')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mEmail Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `emails` WHERE `emails`.`email` = BINARY 'example1@domain.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `emails` (`email`, `confirmed`, `confirm_token`, `created_at`, `updated_at`) VALUES ('example1@domain.com', 0, '9tUdd7acBXcwObIuEHrPAQ', '2017-03-26 21:43:25', '2017-03-26 21:43:25')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mPhone Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` = BINARY '1234567890' AND (`phones`.`id` != 1) LIMIT 1[0m
+  [1m[36mEmail Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM `emails` WHERE `emails`.`email` = BINARY 'example1@domain.com' AND (`emails`.`id` != 1) LIMIT 1[0m
+  [1m[35m (30.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` = BINARY '1234567890' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Load (0.2ms)[0m  [1m[34mSELECT  `phones`.* FROM `phones` ORDER BY `phones`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `phones` (`created_at`, `updated_at`) VALUES ('2017-03-26 21:43:25', '2017-03-26 21:43:25')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (29.8ms)[0m  [1m[33mUPDATE `phones` SET `phone` = 'an arbitrary value' WHERE `phones`.`id` = 2[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[33mUPDATE `phones` SET `phones`.`pin` = 6786 WHERE `phones`.`id` = 2[0m
+  [1m[35mSQL (17.8ms)[0m  [1m[33mUPDATE `phones` SET `phones`.`verified` = 0 WHERE `phones`.`id` = 2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mPhone Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` = BINARY 'an arbitrary value' LIMIT 1[0m
+  [1m[36mPhone Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` = BINARY 'AN ARBITRARY VALUE' LIMIT 1[0m
+  [1m[35m (55.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT DATABASE() as db[0m
+  [1m[35m (0.4ms)[0m  [1m[34mselect table_name from information_schema.views where table_schema = 'verification_app_test'[0m
+  [1m[35m (250.2ms)[0m  [1m[35mTRUNCATE TABLE `ar_internal_metadata`;[0m
+  [1m[35m (201.0ms)[0m  [1m[35mTRUNCATE TABLE `emails`;[0m
+  [1m[35m (167.7ms)[0m  [1m[35mTRUNCATE TABLE `employers`;[0m
+  [1m[35m (134.5ms)[0m  [1m[35mTRUNCATE TABLE `phones`;[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPhone Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` = BINARY '1234567890' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `phones` (`phone`, `pin`, `created_at`, `updated_at`) VALUES ('1234567890', 1234, '2017-03-26 21:44:17', '2017-03-26 21:44:17')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mEmail Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `emails` WHERE `emails`.`email` = BINARY 'example1@domain.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `emails` (`email`, `confirmed`, `confirm_token`, `created_at`, `updated_at`) VALUES ('example1@domain.com', 0, 'IbuuixgiNV2lpPv4F9K-aw', '2017-03-26 21:44:17', '2017-03-26 21:44:17')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mPhone Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` = BINARY '1234567890' AND (`phones`.`id` != 1) LIMIT 1[0m
+  [1m[36mEmail Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `emails` WHERE `emails`.`email` = BINARY 'example1@domain.com' AND (`emails`.`id` != 1) LIMIT 1[0m
+  [1m[35m (22.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` = BINARY '1234567890' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Load (0.2ms)[0m  [1m[34mSELECT  `phones`.* FROM `phones` ORDER BY `phones`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `phones` (`created_at`, `updated_at`) VALUES ('2017-03-26 21:44:17', '2017-03-26 21:44:17')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[33mUPDATE `phones` SET `phone` = 'an arbitrary value' WHERE `phones`.`id` = 2[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[33mUPDATE `phones` SET `phones`.`pin` = 7627 WHERE `phones`.`id` = 2[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[33mUPDATE `phones` SET `phones`.`verified` = 0 WHERE `phones`.`id` = 2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mPhone Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` = BINARY 'an arbitrary value' LIMIT 1[0m
+  [1m[36mPhone Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` = BINARY 'AN ARBITRARY VALUE' LIMIT 1[0m
+  [1m[35m (58.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (8.9ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT DATABASE() as db[0m
+  [1m[35m (0.3ms)[0m  [1m[34mselect table_name from information_schema.views where table_schema = 'verification_app_test'[0m
+  [1m[35m (174.9ms)[0m  [1m[35mTRUNCATE TABLE `ar_internal_metadata`;[0m
+  [1m[35m (190.0ms)[0m  [1m[35mTRUNCATE TABLE `emails`;[0m
+  [1m[35m (167.6ms)[0m  [1m[35mTRUNCATE TABLE `employers`;[0m
+  [1m[35m (167.8ms)[0m  [1m[35mTRUNCATE TABLE `phones`;[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPhone Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` = BINARY '1234567890' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `phones` (`phone`, `pin`, `created_at`, `updated_at`) VALUES ('1234567890', 1234, '2017-03-26 21:44:59', '2017-03-26 21:44:59')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mEmail Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `emails` WHERE `emails`.`email` = BINARY 'example1@domain.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `emails` (`email`, `confirmed`, `confirm_token`, `created_at`, `updated_at`) VALUES ('example1@domain.com', 0, '0quoa2vQVw5SxAn7cU2j1Q', '2017-03-26 21:44:59', '2017-03-26 21:44:59')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mPhone Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` = BINARY '1234567890' AND (`phones`.`id` != 1) LIMIT 1[0m
+  [1m[36mEmail Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM `emails` WHERE `emails`.`email` = BINARY 'example1@domain.com' AND (`emails`.`id` != 1) LIMIT 1[0m
+  [1m[35m (37.9ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` = BINARY '1234567890' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Load (0.2ms)[0m  [1m[34mSELECT  `phones`.* FROM `phones` ORDER BY `phones`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `phones` (`created_at`, `updated_at`) VALUES ('2017-03-26 21:44:59', '2017-03-26 21:44:59')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[33mUPDATE `phones` SET `phone` = 'an arbitrary value' WHERE `phones`.`id` = 2[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[33mUPDATE `phones` SET `phones`.`pin` = 5563 WHERE `phones`.`id` = 2[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[33mUPDATE `phones` SET `phones`.`verified` = 0 WHERE `phones`.`id` = 2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mPhone Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` = BINARY 'an arbitrary value' LIMIT 1[0m
+  [1m[36mPhone Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` = BINARY 'AN ARBITRARY VALUE' LIMIT 1[0m
+  [1m[35m (96.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT DATABASE() as db[0m
+  [1m[35m (0.4ms)[0m  [1m[34mselect table_name from information_schema.views where table_schema = 'verification_app_test'[0m
+  [1m[35m (124.3ms)[0m  [1m[35mTRUNCATE TABLE `ar_internal_metadata`;[0m
+  [1m[35m (169.5ms)[0m  [1m[35mTRUNCATE TABLE `emails`;[0m
+  [1m[35m (178.8ms)[0m  [1m[35mTRUNCATE TABLE `employers`;[0m
+  [1m[35m (167.5ms)[0m  [1m[35mTRUNCATE TABLE `phones`;[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPhone Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` = BINARY '1234567890' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `phones` (`phone`, `pin`, `created_at`, `updated_at`) VALUES ('1234567890', 1234, '2017-03-26 21:45:15', '2017-03-26 21:45:15')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mEmail Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM `emails` WHERE `emails`.`email` = BINARY 'example1@domain.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `emails` (`email`, `confirmed`, `confirm_token`, `created_at`, `updated_at`) VALUES ('example1@domain.com', 0, 'ErVlUp8Wyaz7fSTrmRdNiQ', '2017-03-26 21:45:15', '2017-03-26 21:45:15')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mPhone Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` = BINARY '1234567890' AND (`phones`.`id` != 1) LIMIT 1[0m
+  [1m[36mEmail Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM `emails` WHERE `emails`.`email` = BINARY 'example1@domain.com' AND (`emails`.`id` != 1) LIMIT 1[0m
+  [1m[35m (37.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` = BINARY '1234567890' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Load (0.3ms)[0m  [1m[34mSELECT  `phones`.* FROM `phones` ORDER BY `phones`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `phones` (`created_at`, `updated_at`) VALUES ('2017-03-26 21:45:15', '2017-03-26 21:45:15')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[33mUPDATE `phones` SET `phone` = 'an arbitrary value' WHERE `phones`.`id` = 2[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[33mUPDATE `phones` SET `phones`.`pin` = 2272 WHERE `phones`.`id` = 2[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[33mUPDATE `phones` SET `phones`.`verified` = 0 WHERE `phones`.`id` = 2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mPhone Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` = BINARY 'an arbitrary value' LIMIT 1[0m
+  [1m[36mPhone Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` = BINARY 'AN ARBITRARY VALUE' LIMIT 1[0m
+  [1m[35m (90.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT DATABASE() as db[0m
+  [1m[35m (0.4ms)[0m  [1m[34mselect table_name from information_schema.views where table_schema = 'verification_app_test'[0m
+  [1m[35m (167.6ms)[0m  [1m[35mTRUNCATE TABLE `ar_internal_metadata`;[0m
+  [1m[35m (158.3ms)[0m  [1m[35mTRUNCATE TABLE `emails`;[0m
+  [1m[35m (212.4ms)[0m  [1m[35mTRUNCATE TABLE `employers`;[0m
+  [1m[35m (167.7ms)[0m  [1m[35mTRUNCATE TABLE `phones`;[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEmail Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `emails` WHERE `emails`.`email` = BINARY 'example1@domain.com' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEmail Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `emails` WHERE `emails`.`email` IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEmail Load (0.2ms)[0m  [1m[34mSELECT  `emails`.* FROM `emails` ORDER BY `emails`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `emails` (`confirm_token`, `created_at`, `updated_at`) VALUES ('s6hap3MKSVzJJhL4CUlGwA', '2017-03-26 21:47:29', '2017-03-26 21:47:29')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[33mUPDATE `emails` SET `email` = 'an arbitrary value' WHERE `emails`.`id` = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mEmail Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `emails` WHERE `emails`.`email` = BINARY 'an arbitrary value' LIMIT 1[0m
+  [1m[36mEmail Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM `emails` WHERE `emails`.`email` = BINARY 'AN ARBITRARY VALUE' LIMIT 1[0m
+  [1m[35m (37.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPhone Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` = BINARY '1234567890' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `phones` (`phone`, `pin`, `created_at`, `updated_at`) VALUES ('1234567890', 1234, '2017-03-26 21:47:29', '2017-03-26 21:47:29')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mEmail Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `emails` WHERE `emails`.`email` = BINARY 'example2@domain.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `emails` (`email`, `confirmed`, `confirm_token`, `created_at`, `updated_at`) VALUES ('example2@domain.com', 0, '26Mkuc5FYbB0aj8DVOebyA', '2017-03-26 21:47:29', '2017-03-26 21:47:29')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mPhone Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` = BINARY '1234567890' AND (`phones`.`id` != 1) LIMIT 1[0m
+  [1m[36mEmail Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM `emails` WHERE `emails`.`email` = BINARY 'example2@domain.com' AND (`emails`.`id` != 2) LIMIT 1[0m
+  [1m[35m (98.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` = BINARY '1234567890' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPhone Load (0.2ms)[0m  [1m[34mSELECT  `phones`.* FROM `phones` ORDER BY `phones`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `phones` (`created_at`, `updated_at`) VALUES ('2017-03-26 21:47:29', '2017-03-26 21:47:29')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[33mUPDATE `phones` SET `phone` = 'an arbitrary value' WHERE `phones`.`id` = 2[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[33mUPDATE `phones` SET `phones`.`pin` = 9922 WHERE `phones`.`id` = 2[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[33mUPDATE `phones` SET `phones`.`verified` = 0 WHERE `phones`.`id` = 2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mPhone Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` = BINARY 'an arbitrary value' LIMIT 1[0m
+  [1m[36mPhone Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `phones` WHERE `phones`.`phone` = BINARY 'AN ARBITRARY VALUE' LIMIT 1[0m
+  [1m[35m (93.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m

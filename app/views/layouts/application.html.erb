@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>VerificationApp</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+
+
+    <%= nav_bar fixed: :top, brand: "Verification App", responsive: true do %>
+    <% if current_employer %>
+      <%= menu_group pull: :right do %>
+        <%= drop_down current_employer.name do %>
+                <%= menu_item "Log Out", '/logout' %>
+                <%= menu_item "edit", edit_employer_path(current_employer) %>
+            <% end %>
+        <% end %>
+        <% end %>
+    <% end %>
+    <div class="margin-top120">
+
+    <% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, class: "alert alert-info" %>
+  <% end %>
+    <%= yield %>
+  </div>
+  </body>
+</html>

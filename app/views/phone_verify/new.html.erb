@@ -1,0 +1,14 @@
+<!-- app/views/sessions/new.html.erb -->
+
+
+
+<div class="modal-dialog">
+<div class="loginmodal-container">
+  <h1>Mobile Verification</h1><br>
+  <%= form_for '',url:'/phone_verify', :method => :put,html:{class: 'form-horizontal'} do |f| %>
+  <%= f.text_field :pin ,class: 'input-xlarge',placeholder: 'Enter Pin',value: current_employer.phone.pin%>
+  <%= f.submit "submit" ,class: "login loginmodal-submit"%>
+  <% end%>
+
+</div>
+</div>
